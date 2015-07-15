@@ -17,72 +17,68 @@
 #pragma mark - View Controller Life Cycle
 
 - (void)viewDidLoad {
-  [super viewDidLoad];
-  [self setDataSource:self];
-  [self setDelegate:self];
+    [super viewDidLoad];
+    [self setDataSource:self];
+    [self setDelegate:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-  [super viewWillAppear:animated];
-  [self reloadData];
+    [super viewWillAppear:animated];
+    [self reloadData];
+    [self selectTabbarIndex:2];
 }
 
 #pragma mark - Tab Pager Data Source
 
 - (NSInteger)numberOfViewControllers {
-  return 5;
+    return 3;
 }
 
 - (UIViewController *)viewControllerForIndex:(NSInteger)index {
-  UIViewController *vc = [UIViewController new];
-  [[vc view] setBackgroundColor:[UIColor colorWithRed:arc4random_uniform(255) / 255.0f
-                                                green:arc4random_uniform(255) / 255.0f
-                                                 blue:arc4random_uniform(255) / 255.0f alpha:1]];
-  return vc;
+    UIViewController *vc = [UIViewController new];
+    [[vc view] setBackgroundColor:[UIColor colorWithRed:arc4random_uniform(255) / 255.0f
+                                                  green:arc4random_uniform(255) / 255.0f
+                                                   blue:arc4random_uniform(255) / 255.0f alpha:1]];
+    return vc;
 }
 
-// Implement either viewForTabAtIndex: or titleForTabAtIndex:
-//- (UIView *)viewForTabAtIndex:(NSInteger)index {
-//  return <#UIView#>;
-//}
-
-- (NSString *)titleForTabAtIndex:(NSInteger)index {
-  return [NSString stringWithFormat:@"Tab #%ld", (long) index + 1];
+- (UIView *)viewForTabAtIndex:(NSInteger)index {
+    //You can return any view here, and play with the frames to adjust spacing between them
+    //I have found that using an image with with content mode aspectFit and making the frame by half that of
+    //the width of the view works well
+    switch (index){
+        case 2:{
+            UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width/2, 44)];
+            view.backgroundColor = [UIColor yellowColor];
+            return view;
+        }break;
+        case 0:{
+            UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width/2, 44)];
+            view.backgroundColor = [UIColor greenColor];
+            return view;
+        }break;
+        case 1:{
+            UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width/2, 44)];
+            view.backgroundColor = [UIColor redColor];
+            return view;
+        }break;
+    }
+    return [[UIView alloc]init];
 }
 
 - (CGFloat)tabHeight {
-  // Default: 44.0f
-  return 50.0f;
-}
-
-- (UIColor *)tabColor {
-  // Default: [UIColor orangeColor];
-  return [UIColor purpleColor];
-}
-
-- (UIColor *)tabBackgroundColor {
-  // Default: [UIColor colorWithWhite:0.95f alpha:1.0f];
-  return [UIColor lightTextColor];
-}
-
-- (UIFont *)titleFont {
-  // Default: [UIFont fontWithName:@"HelveticaNeue-Thin" size:20.0f];
-  return [UIFont fontWithName:@"HelveticaNeue-Bold" size:20.0f];
-}
-
-- (UIColor *)titleColor {
-  // Default: [UIColor blackColor];
-  return [UIColor colorWithRed:1.0f green:0.8f blue:0.0f alpha:1.0f];
+    // Default: 44.0f
+    return 64.0f;
 }
 
 #pragma mark - Tab Pager Delegate
 
 - (void)tabPager:(GUITabPagerViewController *)tabPager willTransitionToTabAtIndex:(NSInteger)index {
-  NSLog(@"Will transition from tab %ld to %ld", [self selectedIndex], (long)index);
+    NSLog(@"Will transition from tab %ld to %ld", [self selectedIndex], (long)index);
 }
 
 - (void)tabPager:(GUITabPagerViewController *)tabPager didTransitionToTabAtIndex:(NSInteger)index {
-  NSLog(@"Did transition to tab %ld", (long)index);
+    NSLog(@"Did transition to tab %ld", (long)index);
 }
 
 @end

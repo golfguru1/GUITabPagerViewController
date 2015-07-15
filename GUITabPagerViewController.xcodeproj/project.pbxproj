@@ -436,6 +436,7 @@
 				796C72D81AA13C8600BF4A99 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		796C72D91AA13C8600BF4A99 /* Build configuration list for PBXNativeTarget "GUITabPagerViewControllerTests" */ = {
 			isa = XCConfigurationList;
@@ -444,6 +445,7 @@
 				796C72DB1AA13C8600BF4A99 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

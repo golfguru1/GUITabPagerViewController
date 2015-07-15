@@ -17,6 +17,7 @@
 @property (weak, nonatomic) id<GUITabPagerDelegate> delegate;
 
 - (void)reloadData;
+- (void)reloadDataWithStartingIndex:(NSInteger)index;
 - (NSInteger)selectedIndex;
 
 - (void)selectTabbarIndex:(NSInteger)index;
